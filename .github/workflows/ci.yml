@@ -17,7 +17,7 @@ jobs:
 
       - name: Stop old server
         run: |
-          PID=$(lsof -t -i:5050)
+          PID=$(lsof -t -i:5050 || true)
           if [ -n "$PID" ]; then
             kill $PID
           fi
