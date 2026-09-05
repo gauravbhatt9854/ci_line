@@ -15,13 +15,6 @@ jobs:
 
     steps:
 
-      - name: Stop old server
-        run: |
-          PID=$(lsof -t -i:$PORT || true)
-          if [ -n "$PID" ]; then
-            kill $PID
-          fi
-
       - name: first step to clone repo in local system
         uses: actions/checkout@v4
 
