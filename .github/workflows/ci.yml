@@ -17,7 +17,7 @@ jobs:
 
       - name: Stop old server
         run: |
-          PID=$(lsof -t -i:5050 || true)
+          PID=$(lsof -t -i:$PORT || true)
           if [ -n "$PID" ]; then
             kill $PID
           fi
@@ -33,5 +33,6 @@ jobs:
       - name: install node dependecies
         run: npm ci
 
-      - name: deployement phase
-        run: nohup node server.js &
+      - name: deployment phase
+        run: |
+          nohup node server.js > server.log 2>&1 &
