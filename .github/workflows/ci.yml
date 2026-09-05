@@ -1,0 +1,28 @@
+name: node_js_server_ci_pipelien
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    environment: production
+    runs-on: self-hosted
+
+    env:
+      PORT: ${{ vars.PORT }}
+
+    steps:
+      - name: first step to clone repo in local system
+        uses: actions/checkout@v4
+
+      - name: setup node 24 for deployment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: install node dependecies
+        run: npm ci
+      
+
