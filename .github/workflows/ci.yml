@@ -14,6 +14,14 @@ jobs:
       PORT: ${{ vars.PORT }}
 
     steps:
+
+      - name: Stop old server
+        run: |
+          PID=$(lsof -t -i:5050)
+          if [ -n "$PID" ]; then
+            kill $PID
+          fi
+
       - name: first step to clone repo in local system
         uses: actions/checkout@v4
 
@@ -26,4 +34,4 @@ jobs:
         run: npm ci
 
       - name: deployement phase
-        run: node server.js
+        run: nohup node server.js &
