@@ -24,5 +24,6 @@ jobs:
 
       - name: install node dependecies
         run: npm ci
-      
 
+      - name: deployement phase
+        run: node server.js
